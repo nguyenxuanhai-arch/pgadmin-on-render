@@ -1,7 +1,10 @@
-# pgAdmin trên Render
-FROM dpage/pgadmin4
+FROM python:3.11-slim
 
-ENV PGADMIN_DEFAULT_EMAIL=admin@localhost.com
-ENV PGADMIN_DEFAULT_PASSWORD=admin123
+ENV PGADMIN_DEFAULT_EMAIL=admin@example.com
+ENV PGADMIN_DEFAULT_PASSWORD=admin
 
-EXPOSE 80
+RUN pip install --no-cache-dir pgadmin4 gunicorn
+
+EXPOSE 5050
+
+CMD ["gunicorn", "--bind", "0.0.0.0:5050", "pgadmin4.pgAdmin4:app"]
