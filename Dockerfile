@@ -1,10 +1,12 @@
-FROM python:3.11-slim
+# Dùng image pgAdmin chính thức
+FROM dpage/pgadmin4:latest
 
-ENV PGADMIN_DEFAULT_EMAIL=admin@example.com
-ENV PGADMIN_DEFAULT_PASSWORD=admin
+# Thiết lập biến môi trường cho tài khoản admin
+ENV PGADMIN_DEFAULT_EMAIL=admin@codechallenge.com
+ENV PGADMIN_DEFAULT_PASSWORD=admin123
 
-RUN pip install --no-cache-dir pgadmin4 gunicorn
+# Mở port cho pgAdmin
+EXPOSE 80
 
-EXPOSE 5050
-
-CMD ["gunicorn", "--bind", "0.0.0.0:5050", "pgadmin4.pgAdmin4:app"]
+# Giữ container chạy
+CMD ["pgadmin4"]
