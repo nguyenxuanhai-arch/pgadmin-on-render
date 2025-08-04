@@ -1,12 +1,10 @@
-# Dùng image pgAdmin chính thức
 FROM dpage/pgadmin4:latest
 
-# Thiết lập biến môi trường cho tài khoản admin
+# Config email và password cho pgAdmin
 ENV PGADMIN_DEFAULT_EMAIL=admin@codechallenge.com
 ENV PGADMIN_DEFAULT_PASSWORD=admin123
+ENV PGADMIN_LISTEN_PORT=10000
 
-# Mở port cho pgAdmin
-EXPOSE 80
+EXPOSE 10000
 
-# Giữ container chạy
-CMD ["pgadmin4"]
+CMD ["/entrypoint.sh"]
